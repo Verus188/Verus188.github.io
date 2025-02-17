@@ -1,0 +1,112 @@
+:root {
+    --menu-border: 4px;
+}
+
+body {
+    background-image: url("assets/plate_back.png");
+    background-size: 7em;
+    image-rendering: pixelated;
+
+
+    font-family: "Jersey 10", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.navigation-menu {
+    display: flex;
+    font-size: 2em;
+    background-color: #2f3952;
+    padding: 0.2em;
+    border: #202530 solid 6px;
+}
+
+.navi-button {
+    flex: auto;
+    text-align: center;
+    border-bottom: #202530 solid var(--menu-border);
+    border-top: #202530 solid var(--menu-border);
+    border-left: #202530 solid calc(var(--menu-border)/2);
+    border-right: #202530 solid calc(var(--menu-border)/2);
+
+}
+
+.navi-button:first-child{
+    border-left: #202530 solid var(--menu-border);
+}
+.navi-button:last-child{
+    border-right: #202530 solid var(--menu-border);
+}
+
+a.navi-button:hover {
+    background-color: #343f59;
+}
+
+a.navi-button:hover,
+a.navi-button:active,
+a.navi-button {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.right-menu {
+    position: absolute;
+    right: 8px;
+    display: block;
+    background-color: #2f3952;
+    border: #202530 solid 6px;
+    width: 10em;
+    height: 47em;
+    overflow-y: scroll;
+    margin-left: auto;
+    margin-top: 0.5em;
+
+}
+
+scroll-page {
+    transition: 0.5s;
+    justify-content: center;
+    display: flex;
+    
+}
+
+.slot {
+    scale: 2;
+    margin: 2.5em;
+}
+scroll-page:hover {
+    transition: 0.5s;
+    scale: 1.1;
+}
+
+.main-area {
+    position: absolute;
+    top: 180px;
+    left: 100px;
+}
+
+#zone {
+    border: black solid 3px;
+}
+
+#tutorial {
+    position: absolute;
+    scale: 2;
+    translate: 0px 42px;
+}
+
+#figure1:hover {
+    stroke:aquamarine;
+    stroke-width: 2;
+}
+
+
+/* .pixelify-sans-def {
+    font-family: "Pixelify Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  } */
+  
+/* border-bottom-left-radius: 32px;
+  border-bottom-right-radius: 32px; */

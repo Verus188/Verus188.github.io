@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Jersey+10&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pixelify+Sans&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Vinyl&display=swap" rel="stylesheet">
+    <title>Space ships</title>
+</head>
+<body>
+    <div class="navigation-menu">
+        <a href="" class="navi-button">Bases</a>     
+        <a href="" class="navi-button">Engines</a>
+        <a href="" class="navi-button">Guns</a>
+    </div>
+
+    <div class="main-area">
+        <!-- <img src="assets/main_square.png" style="position: absolute;"> -->
+            <svg id="zone" viewBox="0 0 1400 512" height="512" width="1400">
+                <defs>
+                    <linearGradient id="gradient1">
+                        <stop offset="0%" stop-color="olive"></stop>
+                        <stop offset="100%" stop-color="darkgreen"></stop>
+                    </linearGradient>
+
+                    <linearGradient id="gradient2">
+                        <stop offset="0%" stop-color="blue"></stop>
+                        <stop offset="100%" stop-color="aqua"></stop>
+                    </linearGradient>
+
+                    <linearGradient id="gradient3">
+                        <stop offset="0%" stop-color="purple"></stop>
+                        <stop offset="100%" stop-color="gold"></stop>
+                    </linearGradient>
+                  </defs>
+
+                  <circle id="figure1" cx="100" cy="100" r="50" fill="url(#gradient1)"></circle>
+                  <rect id="figure2" x="300" y="200" width="100" height="100" fill="url(#gradient3)"></rect>
+                  <path id="figure3" d="M 500 180 h 100 l -50 -100 z" fill="url(#gradient2)"></path>
+
+            </svg>
+    </div>
+
+    <scroll-container class="right-menu">
+        <scroll-page id="a1">
+            <img class="slot" src="assets/slot_common.png" alt="">
+            <svg id="tutorial" width=64 height=64>
+                <path 
+                d="M 13 24
+                h32
+                l 10 8
+                l -10 8
+                h-32
+                z"
+                stroke-width="1" stroke="green" fill="olive"></path>
+            </svg>
+        </scroll-page>
+        <scroll-page id="a2">
+            <img class="slot" src="assets/slot_rare.png" alt="">
+        </scroll-page>
+        <scroll-page id="a2">
+            <img class="slot" src="assets/slot_epic.png" alt="">
+        </scroll-page>
+        <scroll-page id="a2">
+            <img class="slot" src="assets/slot_legendary.png" alt="">
+        </scroll-page>
+        <scroll-page id="a1">
+            <img class="slot" src="assets/slot_common.png" alt="">
+        </scroll-page>
+        <scroll-page id="a2">
+            <img class="slot" src="assets/slot_rare.png" alt="">
+        </scroll-page>
+        <scroll-page id="a2">
+            <img class="slot" src="assets/slot_epic.png" alt="">
+        </scroll-page>
+        <scroll-page id="a2">
+            <img class="slot" src="assets/slot_legendary.png" alt="">
+        </scroll-page>
+        <scroll-page id="a1">
+            <img class="slot" src="assets/slot_common.png" alt="">
+        </scroll-page>
+        <scroll-page id="a2">
+            <img class="slot" src="assets/slot_rare.png" alt="">
+        </scroll-page>
+        <scroll-page id="a2">
+            <img class="slot" src="assets/slot_epic.png" alt="">
+        </scroll-page>
+        <scroll-page id="a2">
+            <img class="slot" src="assets/slot_legendary.png" alt="">
+        </scroll-page>
+    </scroll-container>
+    <script src="script.js"></script>
+</body>
+</html>
