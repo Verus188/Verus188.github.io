@@ -89,17 +89,16 @@ scroll-page:hover {
     border: black solid 3px;
 }
 
-#tutorial {
+#part {
     position: absolute;
     scale: 2;
     translate: 0px 42px;
 }
 
-#figure1:hover {
+#figure:hover {
     stroke:aquamarine;
     stroke-width: 2;
 }
-
 
 /* .pixelify-sans-def {
     font-family: "Pixelify Sans", serif;
