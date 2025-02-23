@@ -11,6 +11,7 @@ body {
     font-family: "Jersey 10", serif;
     font-weight: 400;
     font-style: normal;
+    overflow-x: hidden;
 }
 
 .navigation-menu {
@@ -57,6 +58,7 @@ a.navi-button {
     border: #202530 solid 6px;
     width: 10em;
     height: 47em;
+    overflow-x: hidden;
     overflow-y: scroll;
     margin-left: auto;
     margin-top: 0.5em;
@@ -95,7 +97,7 @@ scroll-page:hover {
     translate: 0px 42px;
 }
 
-#figure:hover {
+.figure:hover {
     stroke:aquamarine;
     stroke-width: 2;
 }
