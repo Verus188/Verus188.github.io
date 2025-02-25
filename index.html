@@ -13,11 +13,10 @@
     <div class="navigation-menu">
         <a href="" class="navi-button">Bases</a>     
         <a href="" class="navi-button">Engines</a>
-        <button href="" class="navi-button" id="b1">Guns</button>
+        <a href="" class="navi-button" id="b1">Guns</a>
     </div>
 
     <div class="main-area">
-        <!-- <svg id="zone" viewBox="0 0 1400 512" height="512" width="1400"> -->
             <svg id="zone">
                 <defs>
                     <linearGradient id="gradient1">
@@ -41,60 +40,38 @@
                     </linearGradient>
                   </defs>
 
-                  <circle class="figure" cx="100" cy="100" r="50" fill="url(#gradient1)"></circle>
-                  <rect class="figure" x="300" y="200" width="100" height="100" fill="url(#gradient3)"></rect>
+                  <!-- <circle class="figure" cx="100" cy="100" r="50" fill="url(#gradient1)"></circle>
+                  <rect class="figure" x="200" y="230" width="100" height="100" fill="url(#gradient3)"></rect>
                   <path class="figure" d="M 500 180 h 100 l -50 -100 z" fill="url(#gradient2)"></path>
-                  <path class="figure" d="M 400 150 h 100 l 40 10 l 40 -10 v 80 l -40 -10 l -40 10 h -100 z" fill="url(#gradient4)"></path>
+                  <path class="figure" d="M 720 350 h 100 l 40 10 l 40 -10 v 80 l -40 -10 l -40 10 h -100 z" fill="url(#gradient4)"></path> -->
             </svg>
     </div>
 
-    <scroll-container class="right-menu">
-        <scroll-page id="a1">
-            <img class="slot" src="assets/slot_common.png" alt="">
-            <svg id="part" width=64 height=64>
-                <path 
-                d="M 13 24
-                h32
-                l 10 8
-                l -10 8
-                h-32
-                z"
-                stroke-width="1" stroke="green" fill="olive"></path>
+    <scroll-container class="right-menu" draggable="false">
+        <scroll-page class="slot" id="slot-1">
+            <svg class="part-icon" width="128px" height="128px">
+                <circle cx="66" cy="70" r="30" fill="url(#gradient1)"></circle>
             </svg>
+            <img class="part-slot" src="assets/slot_common.png" alt="" draggable="false">
         </scroll-page>
-        <scroll-page id="a2">
-            <img class="slot" src="assets/slot_rare.png" alt="">
+        <scroll-page class="slot" id="slot-2">
+            <svg class="part-icon" width="128px" height="128px">
+                <rect x="34" y="40" width="60" height="60" fill="url(#gradient3)"></rect>
+            </svg>
+            <img class="part-slot" src="assets/slot_common.png" alt="" draggable="false">
         </scroll-page>
-        <scroll-page id="a2">
-            <img class="slot" src="assets/slot_epic.png" alt="">
+        <scroll-page class="slot" id="slot-3">
+            <svg class="part-icon" width="128px" height="128px">
+                <path d="M 28 106 h 75 l -35 -75 z" fill="url(#gradient2)"></path>
+            </svg>
+            <img class="part-slot" src="assets/slot_common.png" alt="" draggable="false">
         </scroll-page>
-        <scroll-page id="a2">
-            <img class="slot" src="assets/slot_legendary.png" alt="">
-        </scroll-page>
-        <scroll-page id="a1">
-            <img class="slot" src="assets/slot_common.png" alt="">
-        </scroll-page>
-        <scroll-page id="a2">
-            <img class="slot" src="assets/slot_rare.png" alt="">
-        </scroll-page>
-        <scroll-page id="a2">
-            <img class="slot" src="assets/slot_epic.png" alt="">
-        </scroll-page>
-        <scroll-page id="a2">
-            <img class="slot" src="assets/slot_legendary.png" alt="">
-        </scroll-page>
-        <scroll-page id="a1">
-            <img class="slot" src="assets/slot_common.png" alt="">
-        </scroll-page>
-        <scroll-page id="a2">
-            <img class="slot" src="assets/slot_rare.png" alt="">
-        </scroll-page>
-        <scroll-page id="a2">
-            <img class="slot" src="assets/slot_epic.png" alt="">
-        </scroll-page>
-        <scroll-page id="a2">
-            <img class="slot" src="assets/slot_legendary.png" alt="">
-        </scroll-page>
+        <scroll-page class="slot" id="slot-4">
+            <svg class="part-icon" width="128px" height="128px">
+                <path d="M 55 120 h 100 l 40 10 l 40 -10 v 80 l -40 -10 l -40 10 h -100 z" fill="url(#gradient4)" style="scale: 0.45;"></path>
+            </svg>
+            <img class="part-slot" src="assets/slot_common.png" alt="" draggable="false">
+        </scroll-page>  
     </scroll-container>
     <script src="script.js"></script>
 </body>

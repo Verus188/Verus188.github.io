@@ -74,10 +74,13 @@ scroll-page {
     
 }
 
-.slot {
+.part-slot {
     scale: 2;
     margin: 2.5em;
+    user-select: none;
 }
+
+
 scroll-page:hover {
     transition: 0.5s;
     scale: 1.1;
@@ -98,10 +101,11 @@ scroll-page:hover {
     position: absolute;
 }
 
-#part {
+.part-icon {
     position: absolute;
-    scale: 2;
-    translate: 0px 42px;
+    /* scale: 2; */
+    /* translate: 0px 42px; */
+    z-index: 1;
 }
 
 .figure:hover {
