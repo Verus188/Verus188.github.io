@@ -1,13 +1,24 @@
-console.log("script is working");
-
-
 let figs = document.getElementsByClassName("figure");
 
+letFiguresMove(figs);
 
-for (let i=0; i<figs.length; i++) {
-    let fig = figs[i];
-    console.log(fig);
+let create_button = document.getElementById("b1");
+let svg_zone = document.getElementById("zone");
+create_button.onclick = function(e) {
+
+
+    // svg_zone.appendChild(fig);
+    svg_zone.innerHTML += '<path class="figure" d="M 400 350 h 100 l 40 10 l 40 -10 v 80 l -40 -10 l -40 10 h -100 z" fill="gold"></path>'
     
+    figs = document.getElementsByClassName("figure");
+    letFiguresMove(figs);
+    
+
+
+    
+}
+
+function moveAble(fig) {
 
     fig.addEventListener("mousedown", function(e) {
         let reg = /-?\d{1,}/g;
@@ -47,4 +58,13 @@ for (let i=0; i<figs.length; i++) {
         }
         
     });
+
+}
+
+function letFiguresMove(figs) {
+    for (let i=0; i<figs.length; i++) {
+        let fig = figs[i];
+
+        fig.addEventListener("mousedown", moveAble(fig));
+    }
 }
