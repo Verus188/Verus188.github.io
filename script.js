@@ -121,7 +121,7 @@ for (let i=0; i<slots.length; i++) {
         let slot_id = slot.getAttribute("id").match(regex)[0];
         
         svg_zone.innerHTML += slots_parts.get(slot_id);
-        created_part = svg_zone.lastChild;
+        // created_part = svg_zone.lastChild;
 
         let figs = document.getElementsByClassName("figure");
         setPartsListener(figs); 
@@ -186,49 +186,44 @@ colorB.addEventListener("click", function(e) {
 
 });
 
-// // изменение скейлинга
-// scaleB.addEventListener("click", function(e) {
 
-//     if (chosen_part) {
-//         setConfigButtonsColor("aliceblue");
-//         scaleB.style.color = "LightGreen";
-//         activeConfigButton = scaleB;
-//         configBar.value = 0;
-//         configBar.step = 0.01;
-//         configBar.max = 3;
-//         configProgress.value = "";
+//удаление элементов
+document.addEventListener("keydown", function(e) {
+    if (e.code == "Delete" && chosen_part) {
+        svg_zone.removeChild(chosen_part);
+    }
+});
 
-//         chosen_part.style.transform = `scale(${configProgress.value})`;
-//         configProgress.addEventListener("input", function() {
-//             chosen_part.style.transform = `scale(${configProgress.value})`;
-//         })
-//         configBar.addEventListener("input", function() {
-//             chosen_part.style.transform = `scale(${configBar.value})`;
-//         })
-//     }
-// });
-
-// // изменение угла наклона
-// angleB.addEventListener("click", function(e) {
-
-//     if (chosen_part) {
-//         setConfigButtonsColor("aliceblue");
-//         angleB.style.color = "LightGreen";
-//         activeConfigButton = angleB;
-//         configBar.value = chosen_part.style.rotate;
-//         configProgress.value = chosen_part.style.rotate;
-//         console.log(chosen_part.style.rotate);
+//копирование элементов
+let copiedPart;
+document.addEventListener("keydown", function(e) {
+    
+    if (e.ctrlKey && e.code == "KeyC" && chosen_part) {
+        copiedPart = chosen_part.cloneNode(true);
+        console.log("copied");
+        console.log(copiedPart);
         
-//         configBar.step = 1;
-//         configBar.max = 360;
-//         configProgress.value = "";
+        
+    }
+    
+});
 
-//         chosen_part.style.rotate = configProgress.value + "deg";
-//         configProgress.addEventListener("input", function() {
-//             chosen_part.style.rotate = configProgress.value + "deg";
-//         })
-//         configBar.addEventListener("input", function() {
-//             chosen_part.style.transform = `rotate(${configBar.value}deg)`;
-//         })
-//     }
-// });
+//вставка элементов
+document.addEventListener("keydown", function(e) {
+    if (e.ctrlKey && e.code == "KeyV" && copiedPart) {
+        if (chosen_part) {
+            chosen_part.style.stroke = null;
+        }  
+
+        // svg_zone.innerHTML += copiedPart;
+        svg_zone.appendChild(copiedPart);
+        copiedPart = copiedPart.cloneNode(true);
+    
+
+        let figs = document.getElementsByClassName("figure");
+        setPartsListener(figs); 
+        
+        
+    }
+    
+});
