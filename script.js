@@ -4,16 +4,15 @@ slots_parts.set("2", '<rect class="figure" x="100" y="200" width="100" height="1
 slots_parts.set("3", '<path class="figure" d="M 100 200 h 100 l -50 -100 z" fill="darkgoldenrod"></path>');
 slots_parts.set("4", '<path class="figure" d="M 100 200 h 100 l 40 10 l 40 -10 v 80 l -40 -10 l -40 10 h -100 z" fill="darkgoldenrod"></path>');
 
-let figs = document.getElementsByClassName("figure");
-letElemsMove(figs);
+let parts = document.getElementsByClassName("figure");
+setPartsListener(parts);
 
 let svg_zone = document.getElementById("zone");
 
-
-function moveAble(elem) {
+function movable(elem) {
 
     elem.addEventListener("mousedown", function(e) {
-        let reg = /-?\d{1,}/g;
+        let regex = /-?\d{1,}/g; //выделяет число
 
         let oldClientX = e.clientX;
         let oldClientY = e.clientY;
@@ -23,8 +22,8 @@ function moveAble(elem) {
             oldX = 0;
             oldY = 0;
         } else {
-            oldX = elem.style.translate.match(reg)[0]
-            oldY = elem.style.translate.match(reg)[1]
+            oldX = elem.style.translate.match(regex)[0]
+            oldY = elem.style.translate.match(regex)[1]
         }
 
 
@@ -53,21 +52,71 @@ function moveAble(elem) {
 
 }
 
-function letElemsMove(elems) {
+//дает возоможность выделять объект
+let chosen_part;
+function choosable(elem) {
+    elem.addEventListener("mousedown", function() {
+
+        if (chosen_part) {
+            chosen_part.style.stroke = null;
+        }
+
+        chosen_part = elem;
+        elem.style.stroke = "aquamarine";
+        elem.style.strokeWidth = "2";
+
+        
+
+
+
+
+        //заполнение угла наклона и скейлинга
+        let regex = /\d{1,}/g; //выделяет число
+
+        if (chosen_part.style.scale) {
+            scaleBar.value = chosen_part.style.scale;
+            scaleProgress.value = chosen_part.style.scale;
+        } else {    
+            scaleBar.value = 1;
+            scaleProgress.value = 1;
+        }
+
+        if (chosen_part.style.rotate) {
+            angleBar.value = chosen_part.style.rotate.match(regex);
+            angleProgress.value = chosen_part.style.rotate.match(regex);
+        } else {    
+            angleBar.value = 0;
+            angleProgress.value = 0;
+        }
+
+
+    });
+}
+
+function setPartsListener(elems) {
     for (let i=0; i<elems.length; i++) {
         let elem = elems[i];
 
-        elem.addEventListener("mousedown", moveAble(elem));
+        // elem.addEventListener("mousedown", movable(elem));
+        movable(elem);
+        choosable(elem);
     }
 }
 
-let slots = document.getElementsByClassName("slot");
 
+
+
+let slots = document.getElementsByClassName("slot");
+// создание фигур на экране
 for (let i=0; i<slots.length; i++) {
     let slot = slots[i];
 
     slot.addEventListener("click", function(e) {
-        let regex = /\d{1,}/g;
+        if (chosen_part) {
+            chosen_part.style.stroke = null;
+        }    
+
+        let regex = /\d{1,}/g; //выделяет число
 
         let slot_id = slot.getAttribute("id").match(regex)[0];
         
@@ -75,7 +124,111 @@ for (let i=0; i<slots.length; i++) {
         created_part = svg_zone.lastChild;
 
         let figs = document.getElementsByClassName("figure");
-        letElemsMove(figs);                
+        setPartsListener(figs); 
+                       
 
     });
 };
+
+
+
+
+
+
+//ползунок скейлинга следит за текстовым показателем и наоборот
+let scaleBar = document.getElementById("scale-bar");
+let scaleProgress = document.getElementById("scale-progress");
+
+scaleBar.addEventListener("input", function() {
+    scaleProgress.value = scaleBar.value;
+
+    if (chosen_part) {
+        chosen_part.style.scale = scaleBar.value;
+    }
+});
+
+scaleProgress.addEventListener("input", function() {
+    scaleBar.value = scaleProgress.value;
+    if (chosen_part) {
+        chosen_part.style.scale = scaleProgress.value;
+    }
+});
+
+//ползунок угла наклона следит за текстовым показателем и наоборот
+let angleBar = document.getElementById("angle-bar");
+let angleProgress = document.getElementById("angle-progress");
+
+angleBar.addEventListener("input", function() {
+    angleProgress.value = angleBar.value;
+    if (chosen_part) {
+        chosen_part.style.rotate = angleBar.value+"deg";
+    }
+});
+
+angleProgress.addEventListener("input", function() {
+    angleBar.value = angleProgress.value;
+        if (chosen_part) {
+        chosen_part.style.rotate = angleProgress.value+"deg";
+    }
+});
+
+
+
+
+// изменение цвета
+let colorB = document.getElementById("color-b");
+colorB.addEventListener("click", function(e) {
+    let color;3
+    if (chosen_part) {
+        color = prompt("Выберите цвет (css название, hex)");
+        chosen_part.style.fill = color;
+    }
+
+});
+
+// // изменение скейлинга
+// scaleB.addEventListener("click", function(e) {
+
+//     if (chosen_part) {
+//         setConfigButtonsColor("aliceblue");
+//         scaleB.style.color = "LightGreen";
+//         activeConfigButton = scaleB;
+//         configBar.value = 0;
+//         configBar.step = 0.01;
+//         configBar.max = 3;
+//         configProgress.value = "";
+
+//         chosen_part.style.transform = `scale(${configProgress.value})`;
+//         configProgress.addEventListener("input", function() {
+//             chosen_part.style.transform = `scale(${configProgress.value})`;
+//         })
+//         configBar.addEventListener("input", function() {
+//             chosen_part.style.transform = `scale(${configBar.value})`;
+//         })
+//     }
+// });
+
+// // изменение угла наклона
+// angleB.addEventListener("click", function(e) {
+
+//     if (chosen_part) {
+//         setConfigButtonsColor("aliceblue");
+//         angleB.style.color = "LightGreen";
+//         activeConfigButton = angleB;
+//         configBar.value = chosen_part.style.rotate;
+//         configProgress.value = chosen_part.style.rotate;
+//         console.log(chosen_part.style.rotate);
+        
+//         configBar.step = 1;
+//         configBar.max = 360;
+//         configProgress.value = "";
+
+//         chosen_part.style.rotate = configProgress.value + "deg";
+//         configProgress.addEventListener("input", function() {
+//             chosen_part.style.rotate = configProgress.value + "deg";
+//         })
+//         configBar.addEventListener("input", function() {
+//             chosen_part.style.transform = `rotate(${configBar.value}deg)`;
+//         })
+//     }
+// });
