@@ -5,7 +5,6 @@
 body {
     background-image: url("assets/plate_back.png");
     background-size: 7em;
-    image-rendering: pixelated;
 
 
     font-family: "Jersey 10", serif;
@@ -14,6 +13,8 @@ body {
     overflow-x: hidden;
 
     overflow: hidden;
+
+    image-rendering: pixelated;
 }
 
 .navigation-menu {
@@ -33,7 +34,7 @@ body {
     border-right: #202530 solid 6px;
     border-left: #202530 solid 6px;
     color: aliceblue;
-    grid-gap: 40px;
+    grid-gap: 20px;
 }
 
 .config-elem {
@@ -124,3 +125,29 @@ scroll-page:hover {
     position: absolute;
     z-index: 1;
 }
+
+.config-icon {
+    image-rendering: auto;
+    border: #202530 solid 2px;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+}
+
+.config-icon:hover {
+    background-color: #343f59;
+}
+
+#color-wheel-icon {
+    width: 24px;
+    height: 24px;
+}
+
+#gradient-icon {
+    width: 24px;
+    height: 24px;
+}
+
+
+
+

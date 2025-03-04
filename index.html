@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="navigation-menu">
-        <div id="color-b" class="navi-button">Color</div>     
+        <div class="navi-button">-</div>     
         <div class="navi-button">-</div>
         <div class="navi-button">-</div>
     </div>
@@ -23,14 +23,22 @@
         </div>
         <div class="config-elem">
             angle:
-            <input type="range" id="angle-bar" min="0" max="360" value="0" step="1">
+            <input type="range" id="angle-bar" min="-360" max="360" value="0" step="1">
             <input type="text" id="angle-progress" class="progress-text"></input>
+        </div>
+
+        <div class="config-elem config-icon" id="color-b">
+            <img id="color-wheel-icon" src="assets/change-color-icon4.png" alt="" draggable="false">
+        </div>
+
+        <div class="config-elem config-icon" id="gradient-b">
+            <img id="gradient-icon" src="assets/gradient-icon3.png" alt="" draggable="false">
         </div>
     </div>
 
     <div class="main-area">
             <svg id="zone">
-                <defs>
+                <defs id="gradients">
                     <linearGradient id="gradient1">
                         <stop offset="0%" stop-color="olive"></stop>
                         <stop offset="100%" stop-color="darkgreen"></stop>
@@ -52,10 +60,6 @@
                     </linearGradient>
                   </defs>
 
-                  <!-- <circle class="figure" cx="100" cy="100" r="50" fill="url(#gradient1)"></circle>
-                  <rect class="figure" x="200" y="230" width="100" height="100" fill="url(#gradient3)"></rect>
-                  <path class="figure" d="M 500 180 h 100 l -50 -100 z" fill="url(#gradient2)"></path>
-                  <path class="figure" d="M 720 350 h 100 l 40 10 l 40 -10 v 80 l -40 -10 l -40 10 h -100 z" fill="url(#gradient4)"></path> -->
             </svg>
     </div>
 

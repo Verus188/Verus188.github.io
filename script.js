@@ -4,8 +4,9 @@ slots_parts.set("2", '<rect class="figure" x="100" y="200" width="100" height="1
 slots_parts.set("3", '<path class="figure" d="M 100 200 h 100 l -50 -100 z" fill="darkgoldenrod"></path>');
 slots_parts.set("4", '<path class="figure" d="M 100 200 h 100 l 40 10 l 40 -10 v 80 l -40 -10 l -40 10 h -100 z" fill="darkgoldenrod"></path>');
 
-let parts = document.getElementsByClassName("figure");
-setPartsListener(parts);
+// let parts = document.getElementsByClassName("figure");
+// reloadParts(parts);
+reloadParts();
 
 let svg_zone = document.getElementById("zone");
 
@@ -93,8 +94,18 @@ function choosable(elem) {
     });
 }
 
-function setPartsListener(elems) {
+//убирает выделение с фигуры
+function stopChoosing(elem) {
+    if (elem) {
+        elem.style.stroke = null;
+    }
+}
+
+//добавляет eventListener'ы к фигурам
+function reloadParts() {
+    let elems = document.getElementsByClassName("figure");
     for (let i=0; i<elems.length; i++) {
+        
         let elem = elems[i];
 
         // elem.addEventListener("mousedown", movable(elem));
@@ -123,8 +134,7 @@ for (let i=0; i<slots.length; i++) {
         svg_zone.innerHTML += slots_parts.get(slot_id);
         // created_part = svg_zone.lastChild;
 
-        let figs = document.getElementsByClassName("figure");
-        setPartsListener(figs); 
+        reloadParts(); 
                        
 
     });
@@ -178,7 +188,7 @@ angleProgress.addEventListener("input", function() {
 // изменение цвета
 let colorB = document.getElementById("color-b");
 colorB.addEventListener("click", function(e) {
-    let color;3
+    let color;
     if (chosen_part) {
         color = prompt("Выберите цвет (css название, hex)");
         chosen_part.style.fill = color;
@@ -200,10 +210,6 @@ document.addEventListener("keydown", function(e) {
     
     if (e.ctrlKey && e.code == "KeyC" && chosen_part) {
         copiedPart = chosen_part.cloneNode(true);
-        console.log("copied");
-        console.log(copiedPart);
-        
-        
     }
     
 });
@@ -215,15 +221,52 @@ document.addEventListener("keydown", function(e) {
             chosen_part.style.stroke = null;
         }  
 
-        // svg_zone.innerHTML += copiedPart;
         svg_zone.appendChild(copiedPart);
         copiedPart = copiedPart.cloneNode(true);
     
-
-        let figs = document.getElementsByClassName("figure");
-        setPartsListener(figs); 
+        reloadParts(); 
         
         
     }
     
 });
+
+
+//добавление градиента
+let gradientB = document.getElementById("gradient-b");
+
+gradientB.addEventListener("click", function() {
+    let defsGradients = document.getElementById("gradients");
+    let counter = defsGradients.children.length+1;
+    let gradientId = `gradient-${counter}`;
+    
+    
+
+    let color1 = prompt("Выберите первый цвет (css название, hex)")
+    let color2 = prompt("Выберите второй цвет (css название, hex)");
+
+    let gradient = document.createElement("linearGradient");
+    gradient.setAttribute("id", gradientId)
+
+    let stop1 = document.createElement("stop")
+    stop1.setAttribute("offset", "0%");
+    stop1.setAttribute("stop-color", color1);
+
+    let stop2 = document.createElement("stop")
+    stop2.setAttribute("offset", "100%");
+    stop2.setAttribute("stop-color", color2);
+
+    gradient.appendChild(stop1);
+    gradient.appendChild(stop2);
+    
+
+    defsGradients.appendChild(gradient);
+
+    if (chosen_part) {
+        chosen_part.style.fill = `url(#${gradientId})`;
+    }
+
+    stopChoosing(chosen_part);
+    svg_zone.innerHTML += "";
+    reloadParts();
+})
