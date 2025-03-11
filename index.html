@@ -10,12 +10,49 @@
     <title>Space ships</title>
 </head>
 <body>
-    <div class="navigation-menu">
+    <div id="navigation-menu">
         <div class="navi-button">-</div>     
         <div class="navi-button">-</div>
         <div class="navi-button">-</div>
     </div>
-    <div class="config-menu">
+
+    <div id="save-menu">
+          <div>Ship registration</div>
+          <form method="POST">
+              <label>
+                <div>Ship name:</div>
+                <input class="save-style"
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                >
+              </label>
+            
+              <label>
+                <div>Type:</div>
+                <select name="type" class="save-style" required>
+                  <option value="battle" selected>battle</option>
+                  <option value="cargo">cargo</option>
+                  <option value="passenger">passenger</option>
+                  <option value="other">other</option>
+                </select>
+              </label>
+          
+            
+              <label>
+                <div>Description:</div>
+                <input class="save-style"
+                  type="text"
+                  name="description"
+                  id="description">
+              </label>
+            
+              <button type="submit" class="save-style">Send</button>
+            </form>
+    </div>
+
+    <div id="config-menu">
         <div class="config-elem">
             scale:
             <input type="range" id="scale-bar" min="0.2" max="1.5" value="0" step="0.01">
@@ -28,15 +65,19 @@
         </div>
 
         <div class="config-elem config-icon" id="color-b">
-            <img id="color-wheel-icon" src="assets/change-color-icon4.png" alt="" draggable="false">
+            <img class="icon128" src="assets/change-color-icon4.png" alt="" draggable="false">
         </div>
 
         <div class="config-elem config-icon" id="gradient-b">
-            <img id="gradient-icon" src="assets/gradient-icon3.png" alt="" draggable="false">
+            <img class="icon128" src="assets/gradient-icon3.png" alt="" draggable="false">
+        </div>
+
+        <div id="save-b">
+            save
         </div>
     </div>
 
-    <div class="main-area">
+    <div id="main-area">
             <svg id="zone">
                 <defs id="gradients">
                     <linearGradient id="gradient1">
@@ -63,7 +104,7 @@
             </svg>
     </div>
 
-    <scroll-container class="right-menu" draggable="false">
+    <scroll-container id="right-menu" draggable="false">
         <scroll-page class="slot" id="slot-1">
             <svg class="part-icon" width="128px" height="128px">
                 <circle cx="66" cy="70" r="30" fill="url(#gradient1)"></circle>

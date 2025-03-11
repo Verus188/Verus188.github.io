@@ -17,7 +17,7 @@ body {
     image-rendering: pixelated;
 }
 
-.navigation-menu {
+#navigation-menu {
     display: flex;
     font-size: 2em;
     background-color: #2f3952;
@@ -25,7 +25,27 @@ body {
     border: #202530 solid 6px;
 }
 
-.config-menu {
+#save-menu {
+    display: none;
+    height: 0px;
+    background-color: #171717;
+    border-right: #202530 solid 100px;
+    border-left: #202530 solid 100px;
+    padding: 0.2em;
+
+    color: #63d700;
+    font-size: 50px;
+
+}
+
+.save-style {
+    background-color: #252e1d;
+    border: none;
+    color: #63d700;
+    
+}
+
+#config-menu {
     display: flex;
     font-size: 2em;
     background-color: #2f3952;
@@ -37,12 +57,6 @@ body {
     grid-gap: 20px;
 }
 
-.config-elem {
-    display: flex;
-    grid-gap: 5px;
-    color: aliceblue;
-    align-items: center;
-}
 
 .progress-text {
     width: 28px;
@@ -72,7 +86,7 @@ body {
 }
 
 
-.right-menu {
+#right-menu {
     position: absolute;
     right: 8px;
     display: block;
@@ -106,7 +120,7 @@ scroll-page:hover {
     scale: 1.1;
 }
 
-.main-area {
+#main-area {
     position: absolute;
     left: 0px;
     bottom: 0px;
@@ -126,6 +140,14 @@ scroll-page:hover {
     z-index: 1;
 }
 
+.config-elem {
+    display: flex;
+    grid-gap: 5px;
+    color: aliceblue;
+    align-items: center;
+    user-select: none;
+}
+
 .config-icon {
     image-rendering: auto;
     border: #202530 solid 2px;
@@ -138,16 +160,25 @@ scroll-page:hover {
     background-color: #343f59;
 }
 
-#color-wheel-icon {
+
+.icon128 {
     width: 24px;
     height: 24px;
 }
 
-#gradient-icon {
-    width: 24px;
-    height: 24px;
+#save-b {
+    margin-left: auto;
+    margin-right: 15px;
+    border: #202530 solid 2px;
+    user-select: none;
+    padding-left: 30px;
+    padding-right: 30px;
+
 }
 
+#save-b:hover {
+    background-color: #343f59;
+}
 
 
 

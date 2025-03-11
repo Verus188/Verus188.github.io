@@ -98,6 +98,7 @@ function choosable(elem) {
 function stopChoosing(elem) {
     if (elem) {
         elem.style.stroke = null;
+        chosen_part = null;
     }
 }
 
@@ -236,6 +237,11 @@ document.addEventListener("keydown", function(e) {
 let gradientB = document.getElementById("gradient-b");
 
 gradientB.addEventListener("click", function() {
+
+    if (!chosen_part || chosen_part == null) {
+        return;
+    }
+
     let defsGradients = document.getElementById("gradients");
     let counter = defsGradients.children.length+1;
     let gradientId = `gradient-${counter}`;
@@ -270,3 +276,81 @@ gradientB.addEventListener("click", function() {
     svg_zone.innerHTML += "";
     reloadParts();
 })
+
+
+
+// появления меню сохранения
+let saveB = document.getElementById("save-b");
+let mainArea = document.getElementById("main-area");
+
+saveB.addEventListener("click", function() {
+    let hiss = new Audio("assets\\sounds\\hiss.mp3");
+    let keyboarbSound1 = new Audio("assets\\sounds\\keyboard1.mp3");
+    let keyboarbSound2 = new Audio("assets\\sounds\\keyboard2.mp3");
+    hiss.volume = 0.3;
+    hiss.play();
+
+    mainArea.style.display = "none";
+
+    let rightMenu = document.getElementById("right-menu");
+
+
+    rightMenu.style.transition = "0.4s";
+    rightMenu.style.translate = "200px";
+
+    let configMenu = document.getElementById("config-menu");
+    let saveMenu = document.getElementById("save-menu");
+
+    setTimeout(() => {
+        saveMenu.style.display = "block";
+    }, 400);
+
+    
+    setTimeout(() => {
+        saveMenu.style.transition = "0.8s";
+        
+        saveMenu.style.height = "800px";
+
+        configMenu.style.border = "solid #202530 6px";
+    }, 420);
+
+    setTimeout(() => {
+        saveMenu.style.backgroundColor = "#20271a";
+    }, 800);
+    
+
+    let printSpeed = 100;
+    let delayCounter = 0;
+
+    setDisplayToChildren(saveMenu, "none", 0)
+
+
+    setTimeout(() => {
+        setDisplayToChildren(saveMenu, "block", printSpeed*delayCounter++)
+
+    }, 400);
+
+    function setDisplayToChildren(parent, display, delay) {
+        let children = parent.children;
+    
+        setTimeout(() => {
+            parent.style.display = display;
+
+            console.log(parent);
+            
+
+            if (Math.round(Math.random()) == 0) {
+                keyboarbSound1.play();
+            } else {
+                keyboarbSound2.play();
+            }
+        }, delay);
+    
+        if (children.length > 0) {
+            for(let i=0; i<children.length; i++) {
+                setDisplayToChildren(children[i], display, printSpeed*delayCounter++);
+            }
+        }
+    }
+
+});
