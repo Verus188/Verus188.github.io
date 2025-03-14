@@ -283,17 +283,59 @@ gradientB.addEventListener("click", function() {
 let saveB = document.getElementById("save-b");
 let mainArea = document.getElementById("main-area");
 
+//создание анимации меню сохранения
+let shimZone = document.getElementById("shim-zone");
+let shimCount = 7;
+let shimStep = 130;
+let shimSpeed = 25;
+for (let i=(-shimCount); i<shimCount; i++) {
+    shimZone.innerHTML += `<rect class="shim-rect" y="${i*shimStep}" width="100%" height="100px" opacity="15%" fill="url(#shim-gradient)"></rect>`;
+
+}
+
+let shimRects = document.getElementsByClassName("shim-rect");
+setInterval(function() {
+    for (let i=0; i<shimRects.length; i++) {
+        
+        shimAnimation(shimRects[i], 1);
+
+    }
+}, shimSpeed);
+
+
+let matchDigits = /\d{1,}/g; //выделяет число
+
+function shimAnimation(elem, step) {
+    let elemTranslate = elem.style.translate;
+    if (!elemTranslate) {
+        elem.style.translate = `0px ${step}%`;
+    } else {
+
+        let elemOffset = Number(elem.style.translate.match(matchDigits)[1]);
+
+        if (elemOffset >= 100) {
+            elemOffset = 2;
+        }
+
+        elem.style.translate = `0px ${elemOffset+step}%`;
+    }
+    // console.log(elem.style.translate);
+    
+    
+}
+
 saveB.addEventListener("click", function() {
     let hiss = new Audio("assets\\sounds\\hiss.mp3");
     let keyboarbSound1 = new Audio("assets\\sounds\\keyboard1.mp3");
     let keyboarbSound2 = new Audio("assets\\sounds\\keyboard2.mp3");
     hiss.volume = 0.3;
+    keyboarbSound1.volume = 0.4;
+    keyboarbSound2.volume = 0.4;
     hiss.play();
 
     mainArea.style.display = "none";
 
     let rightMenu = document.getElementById("right-menu");
-
 
     rightMenu.style.transition = "0.4s";
     rightMenu.style.translate = "200px";
@@ -327,7 +369,6 @@ saveB.addEventListener("click", function() {
 
     setTimeout(() => {
         setDisplayToChildren(saveMenu, "block", printSpeed*delayCounter++)
-
     }, 400);
 
     function setDisplayToChildren(parent, display, delay) {
@@ -336,19 +377,18 @@ saveB.addEventListener("click", function() {
         setTimeout(() => {
             parent.style.display = display;
 
-            console.log(parent);
-            
-
             if (Math.round(Math.random()) == 0) {
                 keyboarbSound1.play();
             } else {
                 keyboarbSound2.play();
             }
         }, delay);
-    
+
         if (children.length > 0) {
             for(let i=0; i<children.length; i++) {
-                setDisplayToChildren(children[i], display, printSpeed*delayCounter++);
+                if (children[i].tagName != "svg") {
+                    setDisplayToChildren(children[i], display, printSpeed*delayCounter++);
+                }
             }
         }
     }

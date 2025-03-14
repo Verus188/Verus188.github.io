@@ -17,11 +17,21 @@
     </div>
 
     <div id="save-menu">
+        <!-- <svg id="shim-zone">
+            <defs>
+                <lineargradient id="shim-gradient" gradientTransform="rotate(90)">
+                    <stop offset="0%" stop-color="#20271a"></stop>
+                    <stop offset="50%" stop-color="#293022"></stop>
+                    <stop offset="100%" stop-color="#20271a"></stop>
+                </lineargradient>
+            </defs>
+        </svg> -->
+
           <div>Ship registration</div>
           <form method="POST">
               <label>
                 <div>Ship name:</div>
-                <input class="save-style"
+                <input id="name-input" class="save-style"
                   type="text"
                   name="name"
                   id="name"
@@ -31,7 +41,7 @@
             
               <label>
                 <div>Type:</div>
-                <select name="type" class="save-style" required>
+                <select name="type" class="save-style" id="type-input" required>
                   <option value="battle" selected>battle</option>
                   <option value="cargo">cargo</option>
                   <option value="passenger">passenger</option>
@@ -42,14 +52,21 @@
             
               <label>
                 <div>Description:</div>
-                <input class="save-style"
-                  type="text"
-                  name="description"
-                  id="description">
+                <textarea class="save-style" name="description" id="description-input"></textarea>
               </label>
             
-              <button type="submit" class="save-style">Send</button>
+              <button id="saveButton" type="submit" class="save-style">Send</button>
             </form>
+
+            <svg id="shim-zone">
+                <defs>
+                    <lineargradient id="shim-gradient" gradientTransform="rotate(90)">
+                        <stop offset="0%" stop-color="#20271a"></stop>
+                        <stop offset="50%" stop-color="#293022"></stop>
+                        <stop offset="100%" stop-color="#20271a"></stop>
+                    </lineargradient>
+                </defs>
+            </svg>
     </div>
 
     <div id="config-menu">
@@ -130,6 +147,6 @@
             <img class="part-slot" src="assets/slot_common.png" alt="" draggable="false">
         </scroll-page>  
     </scroll-container>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
