@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map</title>
+  </head>
+  <body>
+    <svg
+      id="svg_zone"
+      width="520"
+      height="520"
+      style="border: 1px solid black"
+    ></svg>
+    <div id="config-menu">
+      <button id="generate-b">Generate</button>
+      <div class="config-block">
+        <label class="config-label" for="">Map size</label>
+        <input id="size-text" class="config-text" type="text" />
+        <input
+          id="size-range"
+          class="config-range"
+          type="range"
+          min="1"
+          max="8"
+        />
+      </div>
+      <div class="config-block">
+        <label class="config-label" for="">Seed</label>
+        <input id="seed-text" class="seed-text" type="text" />
+        <button id="random-seed-b">random</button>
+      </div>
+      <div class="config-block">
+        <label class="config-label" for="">Roughness</label>
+        <input id="roughness-text" class="config-text" type="text" />
+        <input
+          id="roughness-range"
+          class="config-range"
+          type="range"
+          min="0"
+          max="20"
+        />
+      </div>
+      <div class="config-block">
+        <label class="config-label" for="">Smoothness</label>
+        <input id="smoothness-text" class="config-text" type="text" />
+        <input
+          id="smoothness-range"
+          class="config-range"
+          type="range"
+          min="0"
+          max="20"
+        />
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

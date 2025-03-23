@@ -1,0 +1,35 @@
+body {
+  background-color: midnightblue;
+  display: flex;
+}
+
+#config-menu {
+  width: 400px;
+  /* border: 2px black solid; */
+}
+
+.config-block {
+  display: flex;
+}
+
+.config-text {
+  width: 30px;
+  text-align: center;
+}
+
+.config-range {
+  width: 200px;
+}
+
+.config-label {
+  color: aliceblue;
+}
+
+.size-range {
+}
+
+.roughenss-range {
+}
+
+.smootness-range {
+}
