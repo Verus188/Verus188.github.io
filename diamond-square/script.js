@@ -72,11 +72,6 @@ map[0][size - 1] = seededRandom.random(minHeight, maxHeight);
 map[size - 1][0] = seededRandom.random(minHeight, maxHeight);
 map[size - 1][size - 1] = seededRandom.random(minHeight, maxHeight);
 
-// map[0][0] = randInt(minHeight, maxHeight);
-// map[0][size - 1] = randInt(minHeight, maxHeight);
-// map[size - 1][0] = randInt(minHeight, maxHeight);
-// map[size - 1][size - 1] = randInt(minHeight, maxHeight);
-
 //размер svg клетки
 let areaSize = 520 / size;
 
@@ -94,32 +89,36 @@ function drawMap() {
   }
 }
 
+function setBrightnessBorder(brightness, min) {
+  if (brightness < min) {
+    brightness = min;
+  }
+  return brightness;
+}
+
 // возвращает объект клетки карты с цветом
 function getArea(height) {
   let area = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-
+  let brightness;
+  area.setAttributeNS(null, "width", areaSize);
+  area.setAttributeNS(null, "height", areaSize);
   if (height <= 2) {
-    area.setAttributeNS(null, "width", areaSize);
-    area.setAttributeNS(null, "height", areaSize);
-    area.setAttributeNS(null, "fill", "blue");
+    brightness = setBrightnessBorder(height + 30, 15);
+    area.setAttributeNS(null, "fill", `hsl(200, 100%, ${brightness}%)`);
     return area;
   }
 
   if (height <= 5) {
-    area.setAttributeNS(null, "width", areaSize);
-    area.setAttributeNS(null, "height", areaSize);
-    area.setAttributeNS(null, "fill", "gold");
+    brightness = setBrightnessBorder(height + 30, 40);
+    area.setAttributeNS(null, "fill", `hsl(58, 100%, ${brightness}%)`);
     return area;
   }
 
   if (height > 5) {
-    area.setAttributeNS(null, "width", areaSize);
-    area.setAttributeNS(null, "height", areaSize);
-    area.setAttributeNS(null, "fill", "green");
+    brightness = setBrightnessBorder(height + 30, 10);
+    area.setAttributeNS(null, "fill", `hsl(120, 100%, ${brightness}%)`);
     return area;
   } else {
-    area.setAttributeNS(null, "width", areaSize);
-    area.setAttributeNS(null, "height", areaSize);
     area.setAttributeNS(null, "fill", "black");
     return area;
   }
@@ -147,31 +146,6 @@ function square(x, y, blockSize) {
   );
   map[Math.round(y + blockSize / 2) - 1][Math.round(x + blockSize / 2) - 1] = 8;
 }
-
-// function square(x, y, blockSize) {
-//   const x0y0 = map[y][x];
-//   const x0y1 = map[getMapPoint(y, blockSize)][x];
-//   const x1y0 = map[y][getMapPoint(x, blockSize)];
-//   const x1y1 = map[getMapPoint(y, blockSize)][getMapPoint(x, blockSize)];
-//   const midPoint = Math.trunc(
-//     (x0y0 + x0y1 + x1y0 + x1y1) / 4 +
-//       randInt(-roughness * blockSize, roughness * blockSize)
-//   );
-//   map[Math.round(y + blockSize / 2) - 1][Math.round(x + blockSize / 2) - 1] = 8;
-// }
-
-// function diamond(x, y, blockSize) {
-//   const halfBlockSize = (blockSize - 1) / 2;
-//   const above = map[getMapPoint(y, -halfBlockSize)][x];
-//   const bottom = map[getMapPoint(y, halfBlockSize)][x];
-//   const left = map[y][getMapPoint(x, -halfBlockSize)];
-//   const right = map[y][getMapPoint(x, halfBlockSize)];
-//   const midPoint = Math.trunc(
-//     (above + bottom + left + right) / 4 +
-//       randInt(-roughness * blockSize, roughness * blockSize)
-//   );
-//   map[y][x] = midPoint;
-// }
 
 function diamond(x, y, blockSize) {
   const halfBlockSize = (blockSize - 1) / 2;
@@ -328,4 +302,4 @@ diamondSquare();
 smoothMap(smoothness);
 drawMap();
 
-// logArray();
+logArray();

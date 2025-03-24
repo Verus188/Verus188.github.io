@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Jersey+10&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pixelify+Sans&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Vinyl&display=swap" rel="stylesheet">
+    <title>Space ships</title>
+</head>
+<body>
+    <div id="navigation-menu">
+        <div class="navi-button">-</div>     
+        <div class="navi-button">-</div>
+        <div class="navi-button">-</div>
+    </div>
+
+    <div id="save-menu">
+        <!-- <svg id="shim-zone">
+            <defs>
+                <lineargradient id="shim-gradient" gradientTransform="rotate(90)">
+                    <stop offset="0%" stop-color="#20271a"></stop>
+                    <stop offset="50%" stop-color="#293022"></stop>
+                    <stop offset="100%" stop-color="#20271a"></stop>
+                </lineargradient>
+            </defs>
+        </svg> -->
+
+          <div>Ship registration</div>
+          <form method="POST">
+              <label>
+                <div>Ship name:</div>
+                <input id="name-input" class="save-style"
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                >
+              </label>
+            
+              <label>
+                <div>Type:</div>
+                <select name="type" class="save-style" id="type-input" required>
+                  <option value="battle" selected>battle</option>
+                  <option value="cargo">cargo</option>
+                  <option value="passenger">passenger</option>
+                  <option value="other">other</option>
+                </select>
+              </label>
+          
+            
+              <label>
+                <div>Description:</div>
+                <textarea class="save-style" name="description" id="description-input"></textarea>
+              </label>
+            
+              <button id="saveButton" type="submit" class="save-style">Send</button>
+            </form>
+
+            <svg id="shim-zone">
+                <defs>
+                    <lineargradient id="shim-gradient" gradientTransform="rotate(90)">
+                        <stop offset="0%" stop-color="#20271a"></stop>
+                        <stop offset="50%" stop-color="#293022"></stop>
+                        <stop offset="100%" stop-color="#20271a"></stop>
+                    </lineargradient>
+                </defs>
+            </svg>
+    </div>
+
+    <div id="config-menu">
+        <div class="config-elem">
+            scale:
+            <input type="range" id="scale-bar" min="0.2" max="1.5" value="0" step="0.01">
+            <input type="text" id="scale-progress" class="progress-text"></input>
+        </div>
+        <div class="config-elem">
+            angle:
+            <input type="range" id="angle-bar" min="-360" max="360" value="0" step="1">
+            <input type="text" id="angle-progress" class="progress-text"></input>
+        </div>
+
+        <div class="config-elem config-icon" id="color-b">
+            <img class="icon128" src="assets/change-color-icon4.png" alt="" draggable="false">
+        </div>
+
+        <div class="config-elem config-icon" id="gradient-b">
+            <img class="icon128" src="assets/gradient-icon3.png" alt="" draggable="false">
+        </div>
+
+        <div id="save-b">
+            save
+        </div>
+    </div>
+
+    <div id="main-area">
+            <svg id="zone">
+                <defs id="gradients">
+                    <linearGradient id="gradient1">
+                        <stop offset="0%" stop-color="olive"></stop>
+                        <stop offset="100%" stop-color="darkgreen"></stop>
+                    </linearGradient>
+
+                    <linearGradient id="gradient2">
+                        <stop offset="0%" stop-color="blue"></stop>
+                        <stop offset="100%" stop-color="aqua"></stop>
+                    </linearGradient>
+
+                    <linearGradient id="gradient3">
+                        <stop offset="0%" stop-color="purple"></stop>
+                        <stop offset="100%" stop-color="gold"></stop>
+                    </linearGradient>
+
+                    <linearGradient id="gradient4">
+                        <stop offset="0%" stop-color="crimson"></stop>
+                        <stop offset="100%" stop-color="black"></stop>
+                    </linearGradient>
+                  </defs>
+
+            </svg>
+    </div>
+
+    <scroll-container id="right-menu" draggable="false">
+        <scroll-page class="slot" id="slot-1">
+            <svg class="part-icon" width="128px" height="128px">
+                <circle cx="66" cy="70" r="30" fill="url(#gradient1)"></circle>
+            </svg>
+            <img class="part-slot" src="assets/slot_common.png" alt="" draggable="false">
+        </scroll-page>
+        <scroll-page class="slot" id="slot-2">
+            <svg class="part-icon" width="128px" height="128px">
+                <rect x="34" y="40" width="60" height="60" fill="url(#gradient3)"></rect>
+            </svg>
+            <img class="part-slot" src="assets/slot_common.png" alt="" draggable="false">
+        </scroll-page>
+        <scroll-page class="slot" id="slot-3">
+            <svg class="part-icon" width="128px" height="128px">
+                <path d="M 28 106 h 75 l -35 -75 z" fill="url(#gradient2)"></path>
+            </svg>
+            <img class="part-slot" src="assets/slot_common.png" alt="" draggable="false">
+        </scroll-page>
+        <scroll-page class="slot" id="slot-4">
+            <svg class="part-icon" width="128px" height="128px">
+                <path d="M 55 120 h 100 l 40 10 l 40 -10 v 80 l -40 -10 l -40 10 h -100 z" fill="url(#gradient4)" style="scale: 0.45;"></path>
+            </svg>
+            <img class="part-slot" src="assets/slot_common.png" alt="" draggable="false">
+        </scroll-page>  
+    </scroll-container>
+    <script src="script.js" defer></script>
+</body>
+</html>
