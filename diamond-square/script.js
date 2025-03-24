@@ -89,9 +89,12 @@ function drawMap() {
   }
 }
 
-function setBrightnessBorder(brightness, min) {
+function setBrightnessBorder(brightness, min = 0, max = 100) {
   if (brightness < min) {
     brightness = min;
+  }
+  if (brightness > max) {
+    brightness = max;
   }
   return brightness;
 }
@@ -109,13 +112,13 @@ function getArea(height) {
   }
 
   if (height <= 5) {
-    brightness = setBrightnessBorder(height + 30, 40);
-    area.setAttributeNS(null, "fill", `hsl(58, 100%, ${brightness}%)`);
+    brightness = setBrightnessBorder(height + 30, 45);
+    area.setAttributeNS(null, "fill", `hsl(53, 100%, ${brightness}%)`);
     return area;
   }
 
   if (height > 5) {
-    brightness = setBrightnessBorder(height + 30, 10);
+    brightness = setBrightnessBorder(height + 30, 10, 50);
     area.setAttributeNS(null, "fill", `hsl(120, 100%, ${brightness}%)`);
     return area;
   } else {
@@ -302,4 +305,4 @@ diamondSquare();
 smoothMap(smoothness);
 drawMap();
 
-logArray();
+// logArray();
