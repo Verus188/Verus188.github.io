@@ -1,10 +1,14 @@
 let sizeScale = 6;
 let size = 2 ** sizeScale + 1;
 const minHeight = 0;
-const maxHeight = 9;
-let roughness = 10;
-let smoothness = 6;
+const maxHeight = 100;
+let roughness = 8;
+let smoothness = 4;
 seed = randInt(0, 999999999999999);
+
+const waterLevel = 20;
+const beachLevel = waterLevel + 5;
+const forestLevel = beachLevel;
 
 let map = new Array(size);
 
@@ -89,37 +93,67 @@ function drawMap() {
   }
 }
 
-function setBrightnessBorder(brightness, min = 0, max = 100) {
-  if (brightness < min) {
-    brightness = min;
+//ограничивает число
+function setValueBorder(value, min, max) {
+  if (value < min) {
+    value = min;
   }
-  if (brightness > max) {
-    brightness = max;
+  if (value > max) {
+    value = max;
   }
-  return brightness;
+  return value;
 }
 
 // возвращает объект клетки карты с цветом
+// x - диапазон значений высоты области
+// minBr - минимальн возможная яркость
+// hsl имеет 50 едениц яркости цвета
+// k = (50 - minBr) / x
+// умножаем высоту области на n
+// искомое занчение = x * k + minBr
 function getArea(height) {
   let area = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  let brightness;
   area.setAttributeNS(null, "width", areaSize);
   area.setAttributeNS(null, "height", areaSize);
-  if (height <= 2) {
-    brightness = setBrightnessBorder(height + 30, 15);
-    area.setAttributeNS(null, "fill", `hsl(200, 100%, ${brightness}%)`);
+  if (height <= waterLevel) {
+    const minBrightness = 20; //чем больше это значение тем ярче будет цвет
+    const colors = (50 - minBrightness) / waterLevel;
+    area.setAttributeNS(
+      null,
+      "fill",
+      `hsl(200, 100%, ${height * colors + minBrightness}%)`
+    );
     return area;
   }
 
-  if (height <= 5) {
-    brightness = setBrightnessBorder(height + 30, 45);
-    area.setAttributeNS(null, "fill", `hsl(53, 100%, ${brightness}%)`);
+  if (height <= beachLevel) {
+    const minBrightness = 45;
+    const colors = (50 - minBrightness) / (beachLevel - waterLevel);
+
+    area.setAttributeNS(
+      null,
+      "fill",
+      `hsl(55, 100%, ${
+        (beachLevel - waterLevel - (height - waterLevel)) * colors +
+        minBrightness
+      }%)` //beachLevel - waterLevel для инвертации цвета
+    );
+    console.log(height - waterLevel);
+
     return area;
   }
 
-  if (height > 5) {
-    brightness = setBrightnessBorder(height + 30, 10, 50);
-    area.setAttributeNS(null, "fill", `hsl(120, 100%, ${brightness}%)`);
+  if (height > forestLevel) {
+    const minBrightness = 30;
+    const colors = (50 - minBrightness) / (maxHeight / 2 - forestLevel);
+    area.setAttributeNS(
+      null,
+      "fill",
+      `hsl(110, 100%, ${
+        (maxHeight / 2 - beachLevel - (maxHeight / 2 - height)) * colors +
+        minBrightness
+      }%)` // maxHeight поделена на 2 для уменьшения возможного диапазона цветов
+    );
     return area;
   } else {
     area.setAttributeNS(null, "fill", "black");
@@ -143,11 +177,13 @@ function square(x, y, blockSize) {
   const x0y1 = map[getMapPoint(y, blockSize)][x];
   const x1y0 = map[y][getMapPoint(x, blockSize)];
   const x1y1 = map[getMapPoint(y, blockSize)][getMapPoint(x, blockSize)];
-  const midPoint = Math.trunc(
+  let midPoint = Math.trunc(
     (x0y0 + x0y1 + x1y0 + x1y1) / 4 +
       seededRandom.random(-roughness * blockSize, roughness * blockSize)
   );
-  map[Math.round(y + blockSize / 2) - 1][Math.round(x + blockSize / 2) - 1] = 8;
+  midPoint = setValueBorder(midPoint, minHeight, maxHeight);
+  map[Math.round(y + blockSize / 2) - 1][Math.round(x + blockSize / 2) - 1] =
+    midPoint;
 }
 
 function diamond(x, y, blockSize) {
@@ -156,10 +192,11 @@ function diamond(x, y, blockSize) {
   const bottom = map[getMapPoint(y, halfBlockSize)][x];
   const left = map[y][getMapPoint(x, -halfBlockSize)];
   const right = map[y][getMapPoint(x, halfBlockSize)];
-  const midPoint = Math.trunc(
+  let midPoint = Math.trunc(
     (above + bottom + left + right) / 4 +
       seededRandom.random(-roughness * blockSize, roughness * blockSize)
   );
+  midPoint = setValueBorder(midPoint, minHeight, maxHeight);
   map[y][x] = midPoint;
 }
 
@@ -304,5 +341,3 @@ smoothnessText.value = smoothness;
 diamondSquare();
 smoothMap(smoothness);
 drawMap();
-
-// logArray();
