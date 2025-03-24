@@ -4,55 +4,55 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jersey+10&family=Jersey+15&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pixelify+Sans&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Vinyl&display=swap"
+      rel="stylesheet"
+    />
     <title>Map</title>
   </head>
   <body>
     <svg
-      id="svg_zone"
+      id="svg-zone"
       width="520"
       height="520"
       style="border: 1px solid black"
     ></svg>
     <div id="config-menu">
-      <button id="generate-b">Generate</button>
-      <div class="config-block">
-        <label class="config-label" for="">Map size</label>
-        <input id="size-text" class="config-text" type="text" />
-        <input
-          id="size-range"
-          class="config-range"
-          type="range"
-          min="1"
-          max="8"
-        />
-      </div>
-      <div class="config-block">
-        <label class="config-label" for="">Seed</label>
-        <input id="seed-text" class="seed-text" type="text" />
-        <button id="random-seed-b">random</button>
-      </div>
-      <div class="config-block">
-        <label class="config-label" for="">Roughness</label>
-        <input id="roughness-text" class="config-text" type="text" />
-        <input
-          id="roughness-range"
-          class="config-range"
-          type="range"
-          min="0"
-          max="20"
-        />
-      </div>
-      <div class="config-block">
-        <label class="config-label" for="">Smoothness</label>
-        <input id="smoothness-text" class="config-text" type="text" />
-        <input
-          id="smoothness-range"
-          class="config-range"
-          type="range"
-          min="0"
-          max="20"
-        />
-      </div>
+      <label class="config-label" for="">Seed:</label>
+      <button id="random-seed-b">gen</button>
+      <input id="seed-text" class="config-text" type="text" />
+
+      <label class="config-label" for="">Map size:</label>
+      <input id="size-text" class="config-text" type="text" />
+      <input
+        id="size-range"
+        class="config-range"
+        type="range"
+        min="1"
+        max="8"
+      />
+
+      <label class="config-label" for="">Roughness:</label>
+      <input id="roughness-text" class="config-text" type="text" />
+      <input
+        id="roughness-range"
+        class="config-range"
+        type="range"
+        min="0"
+        max="20"
+      />
+
+      <label class="config-label" for="">Smoothness:</label>
+      <input id="smoothness-text" class="config-text" type="text" />
+      <input
+        id="smoothness-range"
+        class="config-range"
+        type="range"
+        min="0"
+        max="20"
+      />
     </div>
     <script src="script.js"></script>
   </body>

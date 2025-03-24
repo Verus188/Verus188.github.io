@@ -1,20 +1,40 @@
 body {
-  background-color: midnightblue;
+  background-color: #212121;
   display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin: 100px;
+
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+#svg-zone {
+  min-width: 520px;
+  min-height: 520px;
 }
 
 #config-menu {
-  width: 400px;
+  width: 450px;
   /* border: 2px black solid; */
-}
-
-.config-block {
-  display: flex;
+  font-size: 24px;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 160px 55px 150px;
+  grid-template-rows: repeat(4, 65px);
 }
 
 .config-text {
   width: 30px;
+  height: 20px;
   text-align: center;
+  justify-content: center;
+}
+
+#seed-text {
+  width: 200px;
 }
 
 .config-range {
@@ -25,11 +45,7 @@ body {
   color: aliceblue;
 }
 
-.size-range {
-}
-
-.roughenss-range {
-}
-
-.smootness-range {
+#random-seed-b {
+  width: 40px;
+  height: 25px;
 }

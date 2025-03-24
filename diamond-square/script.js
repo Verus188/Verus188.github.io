@@ -80,7 +80,7 @@ map[size - 1][size - 1] = seededRandom.random(minHeight, maxHeight);
 //размер svg клетки
 let areaSize = 520 / size;
 
-let svgZone = document.getElementById("svg_zone");
+let svgZone = document.getElementById("svg-zone");
 
 function drawMap() {
   svgZone.innerHTML = "";
@@ -286,12 +286,6 @@ function reGenerateMap() {
   smoothMap(smoothness);
   drawMap();
 }
-
-let generateB = document.getElementById("generate-b");
-
-generateB.addEventListener("click", function () {
-  reGenerateMap();
-});
 
 let sizeRange = document.getElementById("size-range");
 let sizeText = document.getElementById("size-text");
