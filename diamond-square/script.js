@@ -8,7 +8,8 @@ seed = randInt(0, 999999999999999);
 
 const waterLevel = 20;
 const beachLevel = waterLevel + 5;
-const forestLevel = beachLevel;
+const forestLevel = beachLevel + 10;
+const mountainLevel = forestLevel;
 
 let map = new Array(size);
 
@@ -143,16 +144,30 @@ function getArea(height) {
     return area;
   }
 
-  if (height > forestLevel) {
+  if (height <= forestLevel) {
     const minBrightness = 30;
-    const colors = (50 - minBrightness) / (maxHeight / 2 - forestLevel);
+    const colors = (50 - minBrightness) / (forestLevel - beachLevel);
     area.setAttributeNS(
       null,
       "fill",
       `hsl(110, 100%, ${
-        (maxHeight / 2 - beachLevel - (maxHeight / 2 - height)) * colors +
+        (forestLevel - beachLevel - (height - beachLevel)) * colors +
         minBrightness
-      }%)` // maxHeight поделена на 2 для уменьшения возможного диапазона цветов
+      }%)`
+    );
+    return area;
+  }
+
+  if (height > mountainLevel) {
+    const minBrightness = 35;
+    const colors = (100 - minBrightness) / (maxHeight - mountainLevel);
+    area.setAttributeNS(
+      null,
+      "fill",
+      `hsl(0, 0%, ${
+        (maxHeight - forestLevel - (maxHeight - height)) * colors +
+        minBrightness
+      }%)`
     );
     return area;
   } else {
