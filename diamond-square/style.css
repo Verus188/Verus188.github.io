@@ -2,8 +2,9 @@ body {
   background-color: #212121;
   display: flex;
   justify-content: center;
-  gap: 60px;
   margin: 100px;
+  gap: 60px;
+  flex-wrap: wrap;
 
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
@@ -18,7 +19,6 @@ body {
 
 #config-menu {
   width: 450px;
-  /* border: 2px black solid; */
   font-size: 24px;
   align-items: center;
   display: grid;
