@@ -6,8 +6,10 @@ for (let i = 0; i < playGround.length; i++) {
 }
 let PlayGroundSvg = document.getElementById("svgPlayGround");
 
-// 0 - крестики, 1 - нолики
-let activePlayer = 0;
+const winnerText = document.getElementById("winner-text");
+
+// cross - крестики, circle - нолики
+let activePlayer = "cross";
 
 const boxSize =
   (playGroundSize - (playGround.length + 1) * stepSize) / playGround.length;
@@ -38,21 +40,29 @@ function drawPlayGround() {
       PlayGroundSvg.appendChild(gameRect);
 
       gameRect.addEventListener("click", function () {
-        if (!activePlayer) {
+        if (activePlayer == "cross" && playGround[i][j] == 0) {
           const crossSize = boxSize / 1.5;
           const crossX =
             j * boxSize + stepSize * (j + 1) + (boxSize - crossSize) / 2;
           const crossY =
             i * boxSize + stepSize * (i + 1) + (boxSize - crossSize) / 2;
           const crossSvg = createCross(crossX, crossY, crossSize);
+          playGround[i][j] = "cross";
           PlayGroundSvg.appendChild(crossSvg);
-          activePlayer = 1;
-        } else {
+          activePlayer = "circle";
+        } else if (activePlayer == "circle" && playGround[i][j] == 0) {
           const circleX = j * boxSize + boxSize / 2 + stepSize * (j + 1);
           const circleY = i * boxSize + boxSize / 2 + stepSize * (i + 1);
           const circleSvg = createCircle(circleX, circleY, boxSize / 3);
+          playGround[i][j] = "circle";
           PlayGroundSvg.appendChild(circleSvg);
-          activePlayer = 0;
+          activePlayer = "cross";
+        }
+        const winner = checkWin(0, 0);
+        if (winner === "cross") {
+          winnerText.innerHTML = "Крестики победили!";
+        } else if (winner === "circle") {
+          winnerText.innerHTML = "Нолики победили!";
         }
       });
     }
@@ -84,6 +94,61 @@ function createCircle(x, y, r, strokeColor = "green") {
   circle.setAttribute("stroke", strokeColor);
 
   return circle;
+}
+
+//ищет выигрышную комбинацию в поле 3x3, начиная с x, y
+function checkWin(x, y) {
+  if (
+    playGround[y][x] == playGround[y][x + 1] &&
+    playGround[y][x + 1] == playGround[y][x + 2] &&
+    playGround[y][x] != 0
+  ) {
+    return playGround[y][x];
+  } else if (
+    playGround[y + 1][x] == playGround[y + 1][x + 1] &&
+    playGround[y + 1][x + 1] == playGround[y + 1][x + 2] &&
+    playGround[y + 1][x] != 0
+  ) {
+    return playGround[y + 1][x];
+  } else if (
+    playGround[y + 2][x] == playGround[y + 2][x + 2] &&
+    playGround[y + 2][x + 2] == playGround[y + 2][x + 2] &&
+    playGround[y + 2][x] != 0
+  ) {
+    return playGround[y + 2][x];
+  } else if (
+    playGround[y][x] == playGround[y + 1][x] &&
+    playGround[y + 1][x] == playGround[y + 2][x] &&
+    playGround[y][x] != 0
+  ) {
+    return playGround[y][x];
+  } else if (
+    playGround[y][x + 1] == playGround[y + 1][x + 1] &&
+    playGround[y + 1][x + 1] == playGround[y + 2][x + 1] &&
+    playGround[y][x + 1] != 0
+  ) {
+    return playGround[y][x + 1];
+  } else if (
+    playGround[y][x + 2] == playGround[y + 1][x + 2] &&
+    playGround[y + 1][x + 2] == playGround[y + 2][x + 2] &&
+    playGround[y][x + 2] != 0
+  ) {
+    return playGround[y][x + 2];
+  } else if (
+    playGround[y][x] == playGround[y + 1][x + 1] &&
+    playGround[y + 1][x + 1] == playGround[y + 2][x + 2] &&
+    playGround[y][x] != 0
+  ) {
+    return playGround[y][x];
+  } else if (
+    playGround[y][x + 2] == playGround[y + 1][x + 1] &&
+    playGround[y + 1][x + 1] == playGround[y + 2][x] &&
+    playGround[y][x + 2] != 0
+  ) {
+    return playGround[y][x + 2];
+  } else {
+    return 0;
+  }
 }
 
 drawPlayGround();
