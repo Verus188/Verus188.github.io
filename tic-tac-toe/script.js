@@ -1,12 +1,13 @@
 const playGroundSize = 512;
 const stepSize = 16;
-const playGround = new Array(3);
+let playGround = new Array(3);
 for (let i = 0; i < playGround.length; i++) {
   playGround[i] = new Array(3).fill(0);
 }
 let PlayGroundSvg = document.getElementById("svgPlayGround");
 
 const winnerText = document.getElementById("winner-text");
+const restartButton = document.getElementById("restart-button");
 
 // cross - крестики, circle - нолики
 let activePlayer = "cross";
@@ -50,6 +51,7 @@ function drawPlayGround() {
           playGround[i][j] = "cross";
           PlayGroundSvg.appendChild(crossSvg);
           activePlayer = "circle";
+          winnerText.innerHTML = "o";
         } else if (activePlayer == "circle" && playGround[i][j] == 0) {
           const circleX = j * boxSize + boxSize / 2 + stepSize * (j + 1);
           const circleY = i * boxSize + boxSize / 2 + stepSize * (i + 1);
@@ -57,12 +59,15 @@ function drawPlayGround() {
           playGround[i][j] = "circle";
           PlayGroundSvg.appendChild(circleSvg);
           activePlayer = "cross";
+          winnerText.innerHTML = "x";
         }
         const winner = checkWin(0, 0);
         if (winner === "cross") {
           winnerText.innerHTML = "Крестики победили!";
+          restartButton.style.display = "flex";
         } else if (winner === "circle") {
           winnerText.innerHTML = "Нолики победили!";
+          restartButton.style.display = "flex";
         }
       });
     }
@@ -111,8 +116,8 @@ function checkWin(x, y) {
   ) {
     return playGround[y + 1][x];
   } else if (
-    playGround[y + 2][x] == playGround[y + 2][x + 2] &&
-    playGround[y + 2][x + 2] == playGround[y + 2][x + 2] &&
+    playGround[y + 2][x] == playGround[y + 2][x + 1] &&
+    playGround[y + 2][x + 1] == playGround[y + 2][x + 2] &&
     playGround[y + 2][x] != 0
   ) {
     return playGround[y + 2][x];
@@ -150,5 +155,15 @@ function checkWin(x, y) {
     return 0;
   }
 }
+
+restartButton.addEventListener("click", function () {
+  playGround = new Array(3);
+  for (let i = 0; i < playGround.length; i++) {
+    playGround[i] = new Array(3).fill(0);
+  }
+  activePlayer = "cross";
+  winnerText.innerHTML = "x";
+  drawPlayGround();
+});
 
 drawPlayGround();

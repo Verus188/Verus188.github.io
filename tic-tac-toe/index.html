@@ -5,24 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>tic-tac-toe</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:ital,opsz,wght@0,14..32,312;1,14..32,312&family=Jersey+10&family=Jersey+15&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Pixelify+Sans&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Vinyl&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <svg id="svgPlayGround">
-      <!-- <circle
-        cx="64px"
-        cy="64px"
-        r="64"
-        stroke-width="5"
-        stroke="green"
-        fill="transparent"
-      ></circle>
-      <path
-        d="M0,0 L128,128 M128,0 L0,128"
-        stroke="red"
-        stroke-width="5"
-      ></path> -->
-    </svg>
-    <div id="winner-text"></div>
+    <div id="main-block">
+      <div id="winner-text">x</div>
+      <svg id="svgPlayGround"></svg>
+      <div id="restart-button"><div>RESTART</div></div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

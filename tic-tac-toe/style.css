@@ -2,12 +2,18 @@ body {
   display: flex;
   justify-content: center;
   background-color: #212121;
+
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
 #svgPlayGround {
   min-width: 512px;
   min-height: 512px;
-  margin: 100px;
+  margin: 50px;
   width: 512px;
   height: 512px;
 }
@@ -15,4 +21,22 @@ body {
 #winner-text {
   color: aliceblue;
   font-size: 32px;
+  text-align: center;
+}
+
+#restart-button {
+  justify-content: center;
+  display: none;
+}
+#restart-button > div {
+  color: aliceblue;
+  font-size: 24px;
+  text-align: center;
+  border: orange 3px solid;
+  background-color: black;
+  width: 128px;
+}
+
+#main-block {
+  margin: 50px;
 }
